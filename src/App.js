@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter } from 'react-router-dom'
+import Navbar from './components/routes/Navbar';
+import Dashboard from './components/dashboard/Dashboard'
+import { Route, Switch } from 'react-router-dom';
+import SignIn from './components/auth/SignIn';
+import CreateProject from './components/projects/CreateProject';
+import SignUp from './components/auth/SignUp';
+import ProjectDetails from './components/projects/ProjectDetail';
+import TicTacToe from './components/games/TicTacToe/TicTacToe';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <header className="">
+          <Navbar />
+          <Switch>
+            <Route exact path='/' component={Dashboard} />
+            <Route path='/projects/:id' component={ProjectDetails} />
+            <Route path='/games/tic-tac-toe' component={TicTacToe} />
+            <Route path='/sign-in' component={SignIn} />
+            <Route path='/sign-up' component={SignUp} />
+            <Route path='/create-project' component={CreateProject} />
+          </Switch>
+        </header>
+      </div>
+    </BrowserRouter>
   );
 }
 
